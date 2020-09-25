@@ -1,11 +1,26 @@
 import java.util.Scanner;
 
-public class Fibonacci {
-  private static long calc_fib(int n) {
-    if (n <= 1)
-      return n;
-
-    return calc_fib(n - 1) + calc_fib(n - 2);
+public class Main
+{
+  private static long calc_fib(int n) 
+  {
+      int i,a=0,b=1,c=0;
+    if (n == 1)
+      return 1;
+    if (n == 2)
+      return 2;
+      else
+     
+      {
+          for (i=1;i<=n-2;i++)
+          {
+              c=a+b;
+              a=b;
+              b=c;
+              
+          }
+          return c;
+      }
   }
 
   public static void main(String args[]) {

@@ -5,10 +5,10 @@ public class fibonaccisum
   private static long calc_fib(int n) 
   {
       int i,a=0,b=1,c=0,sum=1;
-    if (n == 1)
-      return 1;
+    if (n == 0)
+      return 0;
     else
-    if (n == 2)
+    if (n == 1)
       return 1;
     else
      

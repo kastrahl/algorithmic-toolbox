@@ -1,17 +1,21 @@
 import java.util.Scanner;
 
-public class FractionalKnapsack 
+public class Main 
 {
     private static double getOptimalValue(int capacity, int[] values, int[] weights) 
     {
 
         double value = 0;                                                             //value is V
+        int n = values.length;
+        
         double perunit[] = new double[capacity];
-        for ( i=0; i <= capacity ; i++)
+        
+        for (int i=0; i < n ; i++)
         {
             perunit[i]=(values[i]*1.0/weights[i]);
         }
-        MergeSort ob = new MergeSort(); 
+        
+        Main ob = new Main(); 
         ob.sort(perunit, 0, perunit.length - 1,values,weights);
 
         int counter=0,len=perunit.length;                                             //len for whole length
@@ -110,7 +114,8 @@ public class FractionalKnapsack
         int capacity = scanner.nextInt();
         int[] values = new int[n];
         int[] weights = new int[n];
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) 
+        {
             values[i] = scanner.nextInt();
             weights[i] = scanner.nextInt();
         }

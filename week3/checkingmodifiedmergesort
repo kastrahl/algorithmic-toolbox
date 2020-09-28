@@ -1,0 +1,113 @@
+class Main
+{
+void merge(double perunit[], int l, int m, int r,int value[],int weight[]) 
+    { 
+        int n1 = m - l + 1; 
+        int n2 = r - m; 
+        double L[] = new double[n1]; 
+        double R[] = new double[n2]; 
+        int tempvalueL[]  =new int[n1];
+        int tempvalueR[]  =new int[n2];
+        int tempweightL[] =new int[n1];
+        int tempweightR[] =new int[n2];
+            
+            for (int i = 0; i < n1; ++i) 
+               {
+                L[i]          = perunit[l + i]; 
+                tempvalueL[i] = value[l + i];
+                tempweightL[i]= weight[l + i];
+               } 
+        
+            for (int j = 0; j < n2; ++j) 
+                {
+                    R[j]          = perunit[m + 1 + j];
+                    tempvalueR[j] = value[m+1+j];
+                    tempweightR[j]= weight[m+1+j]; 
+                }
+    
+        int i = 0, j = 0; 
+        int k = l; 
+    
+        while (i < n1 && j < n2) 
+        { 
+            if (L[i] <= R[j]) 
+            { 
+                perunit[k] = L[i];
+                value[k]  =tempvalueL[i];
+                weight[k] =tempweightL[i]; 
+                i++; 
+            } 
+            else 
+            { 
+                perunit[k] = R[j]; 
+                value[k] = tempvalueR[j];
+                weight[k]=tempweightR[j];
+                j++; 
+            } 
+            k++; 
+        } 
+    
+        while (i < n1) 
+        { 
+            perunit[k] = L[i]; 
+            value[k]  =  tempvalueL[i];
+            weight[k] = tempweightL[i];
+            i++; 
+            k++; 
+        } 
+        while (j < n2) 
+        { 
+            perunit[k] = R[j]; 
+            value[k]  =  tempvalueR[j];
+            weight[k] = tempweightR[j];
+            j++; 
+            k++; 
+        } 
+    } 
+    void sort(double perunit[], int l, int r,int value[],int weight[]) 
+    { 
+        if (l < r) 
+        { 
+            int m = (l + r) / 2; 
+            sort(perunit,  l     , m , value , weight);       //calling for firsthalf
+            sort(perunit,  m + 1 , r , value , weight);       //calling for second half
+            merge(perunit, l , m , r , value , weight); 
+        } 
+    }
+    static void printArray(double arr[]) 
+    { 
+        int n = arr.length; 
+        for (int i = 0; i < n; ++i) 
+            System.out.print(arr[i] + " "); 
+        System.out.println(); 
+    } 
+    static void printArray1(int arr[]) 
+    { 
+        int n = arr.length; 
+        for (int i = 0; i < n; ++i) 
+            System.out.print(arr[i] + " "); 
+        System.out.println(); 
+    }
+  
+    // Driver method 
+    public static void main(String args[]) 
+    { 
+        double arr[] = { 12.0, 11.0, 13.0, 5.0, 6.0, 7.0 }; 
+        int value[]  ={120,11,130,50,60,70};
+        int weight[] ={12000,1100,13000,5000,6000,7000};
+        
+  
+        System.out.println("Given Array"); 
+        printArray(arr);
+        printArray1(value);
+        printArray1(weight);
+  
+        Main ob = new Main(); 
+        ob.sort(arr, 0, arr.length - 1,value,weight); 
+  
+        System.out.println("\nSorted array"); 
+        printArray(arr); 
+        printArray1(value);
+        printArray1(weight);
+    } 
+} 

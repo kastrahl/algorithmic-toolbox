@@ -6,7 +6,7 @@ public class Main
     {
 
         double value = 0;                                                             //value is V
-        int n = values.length-1;
+        int n = values.length;
         
         double perunit[] = new double[n];
         
@@ -26,6 +26,8 @@ public class Main
                 return value;
 
             int taken = Math.min(capacity, weights[len-i]);                     //minimum of capacity or weight ex-min(30 vs 50)
+            int temp =capacity;
+            int temp2=weights[len-i];
             value += (taken * (values[len-i] * 1.0) / weights[len-i]);          //taken will 30 * perunit (biggest element)
             capacity -= taken;                                                  //capacity left is original cap - taken
         }
@@ -121,4 +123,4 @@ public class Main
         }
         System.out.println(getOptimalValue(capacity, values, weights));
     }
-} 
+}

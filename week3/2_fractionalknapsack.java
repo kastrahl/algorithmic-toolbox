@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main 
+public class fractionalknapmine 
 {
     private static double getOptimalValue(int capacity, int[] values, int[] weights) 
     {
@@ -15,7 +15,7 @@ public class Main
             perunit[i]=(values[i]*1.0)/weights[i];
         }
         
-        Main ob = new Main(); 
+        fractionalknapmine ob = new fractionalknapmine(); 
         ob.sort(perunit, 0, perunit.length - 1,values,weights);
 
         int counter=0,len=values.length-1;                                      //length of array of values aka total items (3)
@@ -121,6 +121,8 @@ public class Main
             values[i] = scanner.nextInt();
             weights[i] = scanner.nextInt();
         }
-        System.out.println(getOptimalValue(capacity, values, weights));
+        double a = getOptimalValue(capacity,values,weights);
+        double roundOff = Math.round(a*10000.0)/10000.0;
+        System.out.println(roundOff);
     }
 }

@@ -6,28 +6,28 @@ public class Main
     {
 
         double value = 0;                                                             //value is V
-        int n = values.length;
+        int n = values.length-1;
         
-        double perunit[] = new double[capacity];
+        double perunit[] = new double[n];
         
         for (int i=0; i < n ; i++)
         {
-            perunit[i]=(values[i]*1.0/weights[i]);
+            perunit[i]=(values[i]*1.0)/weights[i];
         }
         
         Main ob = new Main(); 
         ob.sort(perunit, 0, perunit.length - 1,values,weights);
 
-        int counter=0,len=perunit.length;                                             //len for whole length
+        int counter=0,len=values.length-1;                                      //length of array of values aka total items (3)
 
         for (int i = 0; i < n; i++) 
         {
-            if (capacity <= 0)                                                        //capacity is W
+            if (capacity <= 0)                                                  //capacity is W here(50)
                 return value;
 
-            int taken = Math.min(capacity, values[len-1-i]);
-            value += (taken * (values[len-1-i] * 1.0) / weights[len-1-i]);
-            capacity -= taken;
+            int taken = Math.min(capacity, weights[len-i]);                     //minimum of capacity or weight ex-min(30 vs 50)
+            value += (taken * (values[len-i] * 1.0) / weights[len-i]);          //taken will 30 * perunit (biggest element)
+            capacity -= taken;                                                  //capacity left is original cap - taken
         }
         return value;
     }

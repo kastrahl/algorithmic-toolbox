@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main 
+public class fractionalknapmine 
 {
     private static double getOptimalValue(int capacity, int[] values, int[] weights) 
     {
@@ -15,19 +15,21 @@ public class Main
             perunit[i]=(values[i]*1.0)/weights[i];
         }
         
-        Main ob = new Main(); 
-        ob.sort(perunit, 0, perunit.length-1,values,weights);
+        fractionalknapmine ob = new fractionalknapmine(); 
+        ob.sort(perunit, 0, perunit.length - 1,values,weights);
 
-        int counter=0,len=perunit.length;                                             //len for whole length
+        int counter=0,len=values.length-1;                                      //length of array of values aka total items (3)
 
         for (int i = 0; i < n; i++) 
         {
-            if (capacity <= 0)                                                        //capacity is W
+            if (capacity <= 0)                                                  //capacity is W here(50)
                 return value;
 
-            int taken = Math.min(capacity, values[len-1-i]);
-            value += (taken * (values[len-1-i] * 1.0) / weights[len-1-i]);
-            capacity -= taken;
+            int taken = Math.min(capacity, weights[len-i]);                     //minimum of capacity or weight ex-min(30 vs 50)
+            int temp =capacity;
+            int temp2=weights[len-i];
+            value += (taken * (values[len-i] * 1.0) / weights[len-i]);          //taken will 30 * perunit (biggest element)
+            capacity -= taken;                                                  //capacity left is original cap - taken
         }
         return value;
     }
@@ -119,6 +121,8 @@ public class Main
             values[i] = scanner.nextInt();
             weights[i] = scanner.nextInt();
         }
-        System.out.println(getOptimalValue(capacity, values, weights));
+        double a = getOptimalValue(capacity,values,weights);
+        double roundOff = Math.round(a*10000.0)/10000.0;
+        System.out.println(roundOff);
     }
-} 
+}
